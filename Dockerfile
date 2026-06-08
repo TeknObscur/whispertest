@@ -1,2 +1,5 @@
 FROM vllm/vllm-openai:latest
-ENTRYPOINT ["vllm", "serve", "openai/gpt-oss-120b", "--host", "0.0.0.0", "--port", "8000", "--gpu-memory-utilization", "0.90"]
+RUN pip install --no-cache-dir librosa soundfile
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
+ENTRYPOINT ["bash", "/start.sh"]
